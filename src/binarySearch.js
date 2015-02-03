@@ -7,6 +7,10 @@ function binarySearch(array, elem) {
 		rangeMid = parseInt((rangeLength)/2, 10),
 		index = 0 + rangeMid;
 
+	if(elem < array[0] || elem > array[array.length - 1]) {
+		return -1;
+	}
+
 	while(rangeLength >= 1) {
 		// check whether we have found the element or checked all the elements
 		if(array[index] == elem) { // found the element
