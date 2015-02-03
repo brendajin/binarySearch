@@ -1,5 +1,4 @@
 function binarySearch(array, elem) {
-
 	// set initial values
 	var rangeStart = 0,
 		rangeEnd = array.length,
@@ -17,11 +16,9 @@ function binarySearch(array, elem) {
 			return index;
 		} else if(array[index - 1] == elem) { // found the element
 			return index - 1;
-		} else if(rangeLength <= 2) { // checked all the elements
-			return -1;
-		}
+		} 
 
-		// if we haven't found it, and if we haven't checked them all
+		// if we haven't found it
 		if(array[index] > elem){ // if we need to search below
 			rangeEnd = index - 1;
 		} else { // if we need to search above
