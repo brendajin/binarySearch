@@ -17,9 +17,15 @@ describe("binarySearch", function() {
     });
 
     it("in the middle", function() {
-      expect(binarySearch(myEvenArray, 13)).toEqual(2);
-      expect(binarySearch(myOddArray, 13)).toEqual(2);
-      expect(binarySearch(mySmallArray, 13)).toEqual(2);
+      for(var i = 1; i < myEvenArray.length - 1; i++){
+        expect(binarySearch(myEvenArray, myEvenArray[i])).toEqual(i)
+      }
+      for(var i = 1; i < myOddArray.length - 1; i++) {
+        expect(binarySearch(myOddArray, myOddArray[i])).toEqual(i);
+      }
+      for(var i = 1; i < mySmallArray.length - 1; i++) {
+        expect(binarySearch(mySmallArray, mySmallArray[i])).toEqual(i);
+      }
     });
 
     it("at the end", function() {
