@@ -14,13 +14,11 @@ function binarySearch(array, elem) {
 		// check whether we have found the element or checked all the elements
 		if(array[index] == elem) { // found the element
 			return index;
-		} else if(array[index - 1] == elem) { // found the element
-			return index - 1;
 		} 
 
 		// if we haven't found it
 		if(array[index] > elem){ // if we need to search below
-			rangeEnd = index - 1;
+			rangeEnd = index;
 		} else { // if we need to search above
 			rangeStart = index + 1;
 		}
