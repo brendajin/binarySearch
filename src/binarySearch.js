@@ -36,32 +36,30 @@ function binarySearchIterative(array, elem) {
 	return -1;
 }
 
+function recurse(min, max, array, elem) {
+	var mid = Math.floor((max+min)/2);
+
+	if (array[mid] == elem) {
+		return mid;
+	} else if (max - min > 0 && array[mid] > elem) {
+		max = mid -1;
+		return recurse(min, max, array, elem);
+	} else if(max - min > 0 && array[mid] < elem) {
+		min = mid + 1;
+		return recurse(min, max, array, elem);
+	} else {
+		return -1;
+	}
+}
+
 function binarySearchRecursive(array, elem) {
 	var min = 0,
-		max = array.length - 1,
-		mid,
-		result;
-
-	var recurse = function() {
-		mid = Math.floor((max+min)/2);
-
-		if (array[mid] == elem) {
-			result = mid;
-		} else if (max - min > 0 && array[mid] > elem) {
-			max = mid -1;
-			recurse();
-		} else if(max - min > 0 && array[mid] < elem) {
-			min = mid + 1;
-			recurse();
-		} else {
-			result = -1;
-		}
-	};
+		max = array.length - 1;
 
 	if(array.length == 0 || array[0] > elem || array[array.length - 1] < elem) {
 		return -1;
 	} else {
-		recurse();
-		return result;
+		return recurse(min, max, array, elem);
 	}
 }
+
