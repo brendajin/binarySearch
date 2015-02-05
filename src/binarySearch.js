@@ -1,36 +1,25 @@
 function binarySearchIterative(array, elem) {
 	// set initial values
-	var rangeStart = 0,
-		rangeEnd = array.length,
-		rangeLength = rangeEnd - rangeStart,
-		rangeMid = parseInt((rangeLength)/2, 10),
-		index = 0 + rangeMid;
+	var min = 0,
+		max = array.length - 1,
+		mid;
 
-	if(array.length < 1 || elem < array[0] || elem > array[array.length - 1]) {
+	// don't iterate if the element is outside of bounds
+	if(array.length < 1 || elem < array[min] || elem > array[max]) {
 		return -1;
 	}
 
-	while(rangeLength >= 1) {
+	while(max >= min) {
+		mid = parseInt((max + min)/2, 10);
+
 		// check whether we have found the element or checked all the elements
-		if(array[index] == elem) { // found the element
-			return index;
-		} 
-
-		// if we haven't found it
-		if(array[index] > elem){ // if we need to search below
-			rangeEnd = index;
+		if(array[mid] == elem) { // found the element
+			return mid;
+		} else if(array[mid] > elem){ // if we need to search below
+			max = mid - 1;
 		} else { // if we need to search above
-			rangeStart = index + 1;
+			min = mid + 1;
 		}
-
-		// get the new range
-		rangeLength = rangeEnd - rangeStart;
-
-		// find the rangeMid point
-		rangeMid = parseInt((rangeLength)/2, 10);
-
-		// get the distance from 0
-		index = rangeStart + rangeMid;
 	}
 
 	return -1;
@@ -41,10 +30,10 @@ function recurse(min, max, array, elem) {
 
 	if (array[mid] == elem) {
 		return mid;
-	} else if (max - min > 0 && array[mid] > elem) {
+	} else if (max > min && array[mid] > elem) {
 		max = mid -1;
 		return recurse(min, max, array, elem);
-	} else if(max - min > 0 && array[mid] < elem) {
+	} else if(max > min && array[mid] < elem) {
 		min = mid + 1;
 		return recurse(min, max, array, elem);
 	} else {
